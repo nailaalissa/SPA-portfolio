@@ -1,0 +1,111 @@
+<div id="adminPanel" class="panel">
+  <h2>Admin</h2>
+  <div id="InfoLogin"></div>
+  <p id="lastLoginInfo"></p>
+
+  <div class="flex">
+    <label for="backgroundColor">Background Color:</label>
+    <input type="color" id="backgroundColor" name="backgroundColor" value="#000" />
+  </div>
+  <div class="flex">
+    <label for="textColor">Text Color:</label>
+    <input type="color" id="textColor" name="textColor" value="#000000" />
+  </div>
+  <div class="flex">
+    <label for="navColor">Nav Menu Color:</label>
+    <input type="color" id="navColor" name="navColor" value="#293040" />
+  </div>
+  <div class="flex">
+    <label for="profileText">About me Text:</label>
+    <input type="text" id="text" name="profileText" />
+  </div>
+
+  <button id="applyChanges" class="upload-button btn">Apply</button>
+  <button id="resetStylesBtn" class="btn">Reset</button>
+</div>
+<script>
+  ///////////////////////////////////////// Admin Section ///////////////////////////////////
+  // Function to toggle the login form
+  adminBtn.addEventListener('click', login);
+  function toggleLoginForm() {
+    const loginForm = document.getElementById('loginForm');
+    loginForm.style.display =
+      loginForm.style.display === 'none' || loginForm.style.display === '' ? 'block' : 'none';
+  }
+
+  // Function to handle login logic
+  function login() {
+    loginForm.style.display = 'block';
+    const usernameInput = document.getElementById('username').value.toLowerCase();
+    const passwordInput = document.getElementById('password').value.toLowerCase();
+
+    if (usernameInput === 'naila' && passwordInput === '1234') {
+      // console.log('Username:', usernameInput);
+      // console.log('Password:', passwordInput);
+      // console.log('Success');
+      router('admin');
+      usernameInput.value = '';
+      passwordInput.value = '';
+      loginForm.style.display = 'none';
+      loginBtn.textContent = 'Logout';
+      lastLogin = localStorage.getItem('lastLogin');
+    } else {
+      alert('Invalid username or password');
+    }
+  }
+
+  function logform() {
+    const adminPanel = document.getElementById('adminPanel');
+    const loginBtn = document.getElementById('loginBtn');
+    if (loginBtn.textContent === 'Logout') {
+      loginBtn.textContent = 'Login';
+      loginForm.style.display = 'none';
+      router('home');
+    } else {
+      if (loginBtn.textContent === 'Login') {
+        loginBtn.textContent = 'Logout';
+        loginForm.style.display = 'none';
+      }
+      toggleLoginForm();
+    }
+  }
+
+  // ... (your previous code)
+
+  // Event listener for "Apply Changes" button
+  applyChangesBtn.addEventListener('click', applyChanges);
+
+  // Event listener for "Reset Styles" button
+  resetStylesBtn.addEventListener('click', resetStyles);
+
+  // Function to apply changes
+  function applyChanges() {
+    const backgroundColor = document.getElementById('backgroundColor').value;
+    const textColor = document.getElementById('textColor').value;
+    const ProfileText = document.getElementById('text').value;
+    const navColor = document.getElementById('navColor').value;
+
+    document.body.style.backgroundColor = backgroundColor;
+    document.body.style.color = textColor;
+    document.getElementById('ProfileText').innerText = ProfileText;
+    document.getElementById('navbar').style.backgroundColor = navColor;
+  }
+
+  // Function to reset styles
+  function resetStyles() {
+    const defaultBackgroundColor = '#ffffff';
+    const defaultTextColor = 'rgb(13, 13, 14)';
+    const defaultProfileText =
+      "I'm a Frontend Web Developer, specializing in crafting visually appealing and user-friendly websites. A Computer Engineering graduate from Damascus University, I bring strong problem-solving skills and the ability to adapt quickly. Passionate about sharing knowledge, I regularly post valuable content on Web Development on my LinkedIn. Open to job opportunities, I am a communicative, innovative team player eager to contribute and grow. Let's connect and explore how I can bring my skills to your team ";
+    const defaultNavColor = '#293040';
+
+    document.getElementById('backgroundColor').value = defaultBackgroundColor;
+    document.getElementById('textColor').value = defaultTextColor;
+    document.getElementById('text').textContent = defaultProfileText;
+    document.getElementById('navbar').style.backgroundColor = defaultNavColor;
+
+    applyChanges(); // Apply changes after resetting
+  }
+
+  // ... (your remaining code)
+</script>

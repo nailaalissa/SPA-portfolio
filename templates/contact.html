@@ -1,0 +1,72 @@
+<section id="contact">
+  <section class="contact-us">
+    <h1 class="titleContact">Contact Me</h1>
+    <p class="titleContact">
+      Contact me for more information and get notified when I publish something new.
+    </p>
+    <div class="flex">
+      <form id="my-form" action="https://formspree.io/f/xzbndqyq" method="post">
+        <div>
+          <label for="email">Email Address:</label>
+          <input name="email" id="email" type="email" required />
+          <div id="email-error" class="validation-error"></div>
+        </div>
+        <div>
+          <label for="message">Your message:</label>
+          <textarea name="message" id="message" required></textarea>
+          <div id="message-error" class="validation-error"></div>
+        </div>
+        <button id="my-form-button" type="submit" class="btn">Submit</button>
+        <div id="my-form-status" class="subtitle"></div>
+      </form>
+
+      <div class="animation">
+        <img src="./img/email.jpg" alt="email" />
+      </div>
+    </div>
+  </section>
+</section>
+
+<script>
+  var form = document.getElementById('my-form');
+  var status = document.getElementById('my-form-status');
+  const statusText = document.createElement('p');
+
+  async function handleSubmit(event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+    var data = new FormData(event.target);
+
+    try {
+      var response = await fetch(event.target.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          Accept: 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        statusText.innerHTML = 'Thanks. Your message has been sent successfully!';
+        status.style.color = 'green';
+        form.reset();
+
+        // Hide the success message after 5 seconds (adjust as needed)
+        setTimeout(function () {
+          status.style.display = 'none';
+        }, 5000);
+      } else {
+        var responseData = await response.json();
+        if (Object.hasOwnProperty.call(responseData, 'errors')) {
+          statusText.innerHTML = 'Thanks. Your message has been sent successfully!';
+        } else {
+          statusText.innerHTML = 'Oops! There was a problem submitting your form';
+        }
+      }
+    } catch (error) {
+      statusText.innerHTML = 'Oops! There was a problem submitting your form';
+    }
+    statusText.appendChild(status);
+  }
+
+  form.addEventListener('submit', handleSubmit);
+</script>
