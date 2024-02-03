@@ -1,7 +1,7 @@
 <div id="adminPanel" class="panel">
   <h2>Admin</h2>
-  <div id="InfoLogin"></div>
-  <p id="lastLoginInfo"></p>
+  <!-- <div id="InfoLogin"></div>
+  <p id="lastLoginInfo"></p> -->
 
   <div class="flex">
     <label for="backgroundColor">Background Color:</label>
@@ -11,10 +11,10 @@
     <label for="textColor">Text Color:</label>
     <input type="color" id="textColor" name="textColor" value="#000000" />
   </div>
-  <div class="flex">
+  <!-- <div class="flex">
     <label for="navColor">Nav Menu Color:</label>
     <input type="color" id="navColor" name="navColor" value="#293040" />
-  </div>
+  </div> -->
   <div class="flex">
     <label for="profileText">About me Text:</label>
     <input type="text" id="text" name="profileText" />
@@ -93,19 +93,11 @@
 
   // Function to reset styles
   function resetStyles() {
-    const defaultBackgroundColor = '#ffffff';
-    const defaultTextColor = 'rgb(13, 13, 14)';
-    const defaultProfileText =
+    document.getElementById('backgroundColor').value = '#ffffff';
+    document.getElementById('textColor').value = 'rgb(13, 13, 14)';
+    document.getElementById('text').textContent =
       "I'm a Frontend Web Developer, specializing in crafting visually appealing and user-friendly websites. A Computer Engineering graduate from Damascus University, I bring strong problem-solving skills and the ability to adapt quickly. Passionate about sharing knowledge, I regularly post valuable content on Web Development on my LinkedIn. Open to job opportunities, I am a communicative, innovative team player eager to contribute and grow. Let's connect and explore how I can bring my skills to your team ";
-    const defaultNavColor = '#293040';
-
-    document.getElementById('backgroundColor').value = defaultBackgroundColor;
-    document.getElementById('textColor').value = defaultTextColor;
-    document.getElementById('text').textContent = defaultProfileText;
-    document.getElementById('navbar').style.backgroundColor = defaultNavColor;
-
-    applyChanges(); // Apply changes after resetting
+    document.getElementById('navbar').style.backgroundColor = '#293040';
+    applyChanges();
   }
-
-  // ... (your remaining code)
 </script>

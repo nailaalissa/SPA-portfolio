@@ -187,7 +187,7 @@ function displayRepos(repos) {
     imgElement.src = `./img/${repo.name}.jpg`;
     imgElement.alt = `${repo.name} Image`;
     repoCard.appendChild(imgElement);
-
+    let repolink = repo.html_url;
     fetchReadme(username, repo.name, (readmeContent) => {
       // Split the readme content by lines
       const readmeLines = readmeContent.split('\n');
@@ -206,18 +206,17 @@ function displayRepos(repos) {
             <p class="readme">${content}</p>
           </div>
           <div class="cardicon">
-            <div class="icon-hyperlink">
-              <a href="${repo.html_url}">
-                <i class="fa-brands fa-square-github"></i>
-              </a>
-            </div>
-            <div>
-              <a class="link flex" href="${repo.html_url}">
-                more
-                <span> -></span>
-              </a>
-            </div>
-          </div>
+        <div class="icon-hyperlink">
+          <a href="${repolink}">
+            <i class="fa-brands fa-square-github"></i>
+          </a>
+        </div>
+        <div>
+          <a class="link flex" href="${repolink}">
+            <span>more</span>
+          </a>
+        </div>
+      </div>
         </div>
       `;
 
