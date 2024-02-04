@@ -29,8 +29,6 @@ const reponameDiv = document.querySelector('.repo');
 const createRepoBtn = document.getElementById('createRepo');
 // Hide the close icon initially
 closeIcon.style.display = 'none';
-// // // Initially hide the repo input div
-// reponameDiv.style.display = 'none';
 
 function router(page) {
   const container = document.getElementById('content');
@@ -201,7 +199,7 @@ function displayRepos(repos) {
       repoCard.innerHTML += `
         <div class="box">
           <div class="cardtext">
-            <h1 class="cardtitle">${title}</h1>
+          <a class="link flex" href="${repolink}"> <h1 class="cardtitle">  ${title}</h1>  </a>
             <p class="langcard">${repo.language}</p>
             <p class="readme">${content}</p>
           </div>
@@ -224,10 +222,6 @@ function displayRepos(repos) {
     });
   });
 }
-
-// Your event listeners and other parts of the code...
-
-// Your event listeners and other parts of the code...
 
 // Call fetchRepo with a callback function
 fetchRepo((repos) => {
@@ -282,14 +276,6 @@ createnewBtn.addEventListener('click', function () {
     createnewBtn.style.borderRadius = 'initial';
   }
 });
-
-async function handleCreateRepo() {
-  if (userInputRepoName.value.trim() !== '') {
-    await createRepository(userInputRepoName.value);
-  } else {
-    alert('Repository name cannot be empty.');
-  }
-}
 
 // Function to create a GitHub repository
 async function createRepository(repoName) {
