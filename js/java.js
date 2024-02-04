@@ -282,9 +282,54 @@ createnewBtn.addEventListener('click', function () {
     createnewBtn.style.borderRadius = 'initial';
   }
 });
-async function handleCreateRepo() {}
+
+async function handleCreateRepo() {
+  if (userInputRepoName.value.trim() !== '') {
+    await createRepository(userInputRepoName.value);
+  } else {
+    alert('Repository name cannot be empty.');
+  }
+}
 
 // Function to create a GitHub repository
-async function createRepository(repoName) {}
+async function createRepository(repoName) {
+  try {
+    const response = await fetch(`https://api.github.com/user/repos`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: repoName,
+        description: description.value,
+        private: visibilitySelect.value === 'private',
+        has_issues: true,
+        has_projects: true,
+        has_wiki: true,
+        auto_init: true, // Optionally initialize with a README
+        license_template: 'mit', // Optionally specify a license
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to create repository ${repoName}: ${response.statusText}`);
+    }
+
+    const rpodiv = document.getElementById('rpodiv');
+    const repotext = document.createElement('p');
+    repotext.classList.add('repotext');
+    const responseData = await response.json();
+    repotext.textContent = `Repository ${repoName} created successfully!`;
+    rpodiv.appendChild(repotext);
+    console.log(responseData);
+  } catch (error) {
+    const rpodiv = document.getElementById('rpodiv');
+    const repotext = document.createElement('p');
+    repotext.textContent = `Error creating repository ${repoName}. Check the console for details.`;
+    rpodiv.appendChild(repotext);
+    console.error(error);
+  }
+}
 
 /////////////////////////
