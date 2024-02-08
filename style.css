@@ -50,12 +50,16 @@ h2{
 .homeimg{
   float: right;
 }
+.home{
+  display: flex;
+  margin-top: 4rem;
+}
 .homeimg img{
-  margin-top: 5rem;
   width: 470px;
   height: 400px;
-  padding: 1rem;
+
 }
+
 button {
   color: bisque;
   text-align: center;
@@ -77,7 +81,9 @@ a{
 a:active{
   color: black;
 }
-
+.home{
+  margin-bottom: 2rem;
+}
 
 .title{
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -340,6 +346,8 @@ main.flex{
 /* left section */
 .projects{
   display: flex;
+  width: 90%;
+  margin: 1rem;
 }
 .projects .left-section{
   /* flex-direction: column; */
@@ -433,11 +441,11 @@ justify-content: flex-end;
 }
 .box .cardtitle{
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.1rem ;
+  font-size: 1rem ;
   text-transform: capitalize;
   color: var(--blue); 
   /* margin-bottom: 1rem; */
-  padding: 0.5rem 0;
+  padding: 10px;
  
 }
 .box .cardtitle a{
@@ -473,6 +481,10 @@ justify-content: flex-end;
 .cv{
   color: var(--blue);
   font-size: 1rem;
+
+}
+.cvlink{
+  margin: 1rem;
 }
 span:hover{
 color: #000;
@@ -685,61 +697,127 @@ padding: 4rem;
   width: auto;
   margin-bottom: 1rem;
 }
+
 /* media quiery */
-@media (max-width: 600px) {
-  .parent-avatar {
-    display: block;
-    align-items: center;
+
+/* Medium-sized screens */
+@media (max-width: 1045px) and (min-width: 750px) {
+  .left-section button {
+    margin-top: 4rem;
+    width: 8rem;
   }
-  main.flex{
-      /* flex-direction: column; */
-      align-items: center;
+
+  .homeimg img {
+    width: 270px;
+    height: 270px;
   }
-  .projects .left-section.flex{
-      /* flex-direction: column; */
-      flex-wrap: wrap;
-      justify-content: center;
+
+  h1.title {
+    font-size: 1.5rem;
   }
-  .left-section.flex button{
-      width:7rem;
-      padding: 0.8rem 0;
-      font-size: 0.9rem;
-      
+
+  h1,
+  h2 {
+    font-size: 3.3rem;
+    text-align: center;
+    margin: 0 2rem;
   }
-  footer.flex ul{
-    display: none;
+
+  h2 {
+    font-size: 2.2rem;
+    width: 80%;
+    margin: auto;
+  }
+
+  #contact {
+    width: 80%;
+  }
+
+  .contact-us form {
+    width: 70%;
+  }
+
+  .animation {
+    width: 30%;
+  }
+
+  .animation img {
+    width: 250px;
+  }
+
+  header.flex {
+    justify-content: space-around;
+    padding: 0;
+  }
+
+  .menuItem {
+    margin: 1rem;
   }
 }
+
+
+
 @media (max-width: 750px) {
- 
-  label, input {
+  .titleContact{
+    font-size: 18px;
+    padding: 0 10px;
+  }
+
+  .parent-avatar{
+  flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero {
+    width: 90%;}
+  section.hero .left-section {
+    padding: 0;}
+  #ProfileText{
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+  }
+  h1.title {
+    font-size: 1rem;
+    padding: 5px;
+  }
+  h1{
+    margin-top: 3rem;
+    font-size: 3rem;
+    text-align: center;
+  }
+  h2{
+    font-size: 2rem;
+   text-align: center;
+   width: 80%;
+   margin: auto;
+  }
+
+  label,
+  input {
     width: 50%;
-  font-size: 18px;
- 
- 
-  
+    font-size: 18px;
   }
-  
-  #adminbtn{
-  padding: 0 1rem;
-  margin-left: 5rem;
- 
+
+  #adminbtn {
+    padding: 0 1rem;
+    margin-left: 5rem;
   }
-  form{
+
+  form {
     display: flex;
     width: 100%;
     margin: auto;
-   border: none;
+    border: none;
   }
 
-  .homeimg{ display: none;}
-  h1{
-    font-size: 4rem;
-    margin-top: 2rem;
+  .homeimg {
+    display: none;
   }
+
   .menu {
-    display: none; 
-    flex-direction: column; 
+    display: none;
+    flex-direction: column;
     position: fixed;
     top: 5.7rem;
     right: 0;
@@ -747,96 +825,102 @@ padding: 4rem;
     height: 50%;
     background: var(--nav);
     padding: 1rem;
-    transition: transform 0.3s ease-in-out; /* Add smooth transition */
+    transition: transform 0.3s ease-in-out;
     transform: translateX(-100%);
   }
 
   .menu.showMenu {
-    display: flex; 
+    display: flex;
     align-items: center;
-    gap:1rem;
+    gap: 1rem;
     transform: translateX(0);
   }
 
   .hamburger {
-    display: block; /* Show the hamburger icon on small screens */
+    display: block;
   }
-  .projects{
-   display: block;
+
+  .projects {
+    display: block;
   }
-  .right-section{
-   
+
+  .right-section {
     gap: 1rem;
     margin-top: 1rem;
   }
-  .projects .left-section{
+
+  .projects .left-section {
     width: 100%;
-    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-  .repo{
+
+  .left-section button {
+    width: 7rem;
+  }
+
+  .repo {
     align-items: center;
   }
-  .allicons{
-    /* top: 350px; */
+
+  .allicons {
     display: flex;
     position: static;
     flex-direction: row;
     align-items: center;
-  justify-content: space-around;
-  margin-top: 2rem;
-   
+    justify-content: space-around;
+    margin-top: 2rem;
   }
-  h1.title{
+
+  h1.title {
     font-size: 1rem;
   }
-  .animation{
+
+  .animation {
     display: none;
+  }
+
+  .contact-us form {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    margin: 0;
+  }
+
+  #contact {
+    margin-left: 0;
+  }
+
+  .contact-us #email,
+  .contact-us #message {
+    width: 100%;
+    margin-top: 1rem;
+    margin-left: 0;
+    padding: 0.7rem 0;
+  }
+
+  .contact-us .submit {
+    width: 30%;
+    align-self: center;
+  }
+
+  .contact-us {
+    padding: 5px;
+  }
+
+  .contact-us form div {
+    width: 90%;
+  }
 }
-.contact-us form{
+
+@media (min-width: 430px) and (max-width:750px){
+ .hometitle{
   width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-direction: column;
+  margin: auto;
+ }
 }
-main{
-  margin: 0;
-}
-
-#contact{
-  margin-left: 0;
-
-}
-.contact-us #email, .contact-us #message{
-  width: 100%;
-  margin-top: 1rem;
-  margin-left: 0;
-  padding: 0.7rem 0;
-}
-.contact-us .submit{
-  width:30%;
-  align-self: center;
-}
-.contact-us
-{
-  padding: 5px;
-}
-.contact-us form div{
-width:90%;
-
-}
-
-
-}
-@media (max-width: 1045px) and (min-width:750px){
-  header.flex
-  {
-    justify-content: space-around;
-    padding: 0 ;
-}
-.menuItem
-{
-  margin: 1rem;
-}}
-
-

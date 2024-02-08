@@ -6,13 +6,7 @@ const menuIcon = document.querySelector('.menuIcon');
 const loginForm = document.getElementById('loginForm');
 const username = 'nailaalissa';
 const token = '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';
-let cardsection = document.getElementById('cardselection');
-let cssButton = document.getElementById('CSS');
-let allButton = document.getElementById('all');
-let JavaScriptButton = document.getElementById('JavaScript');
-let CSharpButton = document.getElementById('C#');
-let htmlButton = document.getElementById('html');
-let originalData = [];
+
 let numberOfProjects = 0;
 const loginBtn = document.getElementById('loginBtn');
 const adminBtn = document.getElementById('adminbtn');
@@ -43,11 +37,12 @@ function router(page) {
     });
 }
 
+const navbar = document.getElementById('navbar');
 document.addEventListener('DOMContentLoaded', function () {
   router('home');
 });
 
-document.addEventListener('click', function (event) {
+navbar.addEventListener('click', function (event) {
   if (event.target.tagName === 'A') {
     event.preventDefault();
     const page = event.target.getAttribute('data-page');
@@ -145,12 +140,20 @@ function resetStyles() {
 }
 ////////////////////////////
 
+let cardsection = document.getElementById('cardselection');
+let cssButton = document.getElementById('CSS');
+let allButton = document.getElementById('all');
+let JavaScriptButton = document.getElementById('JavaScript');
+let CSharpButton = document.getElementById('C#');
+let htmlButton = document.getElementById('html');
+let originalData = [];
 function fetchRepo(callback) {
   fetch(`https://api.github.com/users/nailaalissa/repos`)
     .then((response) => response.json())
     .then((data) => {
       originalData = data;
-      callback(originalData);
+      callback(data);
+      console.log(data);
     })
     .catch((error) => {
       console.error('Error fetching repositories:', error);
@@ -199,7 +202,7 @@ function displayRepos(repos) {
       repoCard.innerHTML += `
         <div class="box">
           <div class="cardtext">
-          <a class="link flex" href="${repolink}"> <h1 class="cardtitle">  ${title}</h1>  </a>
+          <a class="link flex" href="${repolink}"> <h4 class="cardtitle">  ${title}</h4>  </a>
             <p class="langcard">${repo.language}</p>
             <p class="readme">${content}</p>
           </div>
@@ -257,65 +260,3 @@ fetchRepo((repos) => {
     displayRepos(htmlProjects);
   });
 });
-
-////////////////////////////////// Post API Repo/////////////////
-// Function to create a GitHub repository
-
-createnewBtn.addEventListener('click', function () {
-  // Toggle the visibility of the repo input div
-  if (reponameDiv.style.display === 'none') {
-    reponameDiv.style.display = 'block';
-    createnewBtn.textContent = '✖';
-    createnewBtn.style.float = 'right';
-    // createnewBtn.style.padding = '0 5px';
-    createnewBtn.style.borderRadius = '50%';
-  } else {
-    reponameDiv.style.display = 'none';
-    createnewBtn.textContent = 'Create new Repo';
-    // createnewBtn.style.float = 'left';
-    createnewBtn.style.borderRadius = 'initial';
-  }
-});
-
-// Function to create a GitHub repository
-async function createRepository(repoName) {
-  try {
-    const response = await fetch(`https://api.github.com/user/repos`, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: repoName,
-        description: description.value,
-        private: visibilitySelect.value === 'private',
-        has_issues: true,
-        has_projects: true,
-        has_wiki: true,
-        auto_init: true, // Optionally initialize with a README
-        license_template: 'mit', // Optionally specify a license
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to create repository ${repoName}: ${response.statusText}`);
-    }
-
-    const rpodiv = document.getElementById('rpodiv');
-    const repotext = document.createElement('p');
-    repotext.classList.add('repotext');
-    const responseData = await response.json();
-    repotext.textContent = `Repository ${repoName} created successfully!`;
-    rpodiv.appendChild(repotext);
-    console.log(responseData);
-  } catch (error) {
-    const rpodiv = document.getElementById('rpodiv');
-    const repotext = document.createElement('p');
-    repotext.textContent = `Error creating repository ${repoName}. Check the console for details.`;
-    rpodiv.appendChild(repotext);
-    console.error(error);
-  }
-}
-
-/////////////////////////

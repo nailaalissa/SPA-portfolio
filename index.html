@@ -27,14 +27,15 @@
       </div>
 
       <ul class="menu" id="Home">
+        <li><a class="menuItem" href="#" data-page="home">Home</a></li>
         <li>
           <a class="menuItem" href="#" data-page="projects">My Projects</a>
         </li>
         <li>
           <a class="menuItem" href="#" data-page="about">About</a>
         </li>
-        <li><a class="menuItem" href="#" data-page="home">home</a></li>
-        <li><a class="menuItem" href="#" data-page="contact">contact</a></li>
+       
+        <li><a class="menuItem" href="#" data-page="contact">Contact</a></li>
       </ul>
 
       <!-- <a class="menuItem btn" href="#" data-page="admin" id="loginBtn">Admin</a> -->
@@ -77,30 +78,6 @@
   </div>
 </div>
 <div>
-  <h1 class="titleproject">My Projects</h1>
-  <div>
-    <div class="repoContainer">
-    <button id="createnew" class="createnew btn">Create new Repo</button></div>
-  <div class="repo" id="rpodiv" style="display: none;">
-    <div>
-    <label for="reponame">Repository name you want to create:</label>
-    <input type="text" id="reponame" name="reponame" onfocus="clearThis(this)" />
-  </div>
-  <div>
-    <label for="description">Repository Description:</label>
-    <input type="textarea" id="description" name="description" onfocus="this.value=''" />
-  </div>
-  <div class="flex">
-    <label for="visibility">Visibility:</label>
-    <select id="visibility" name="visibility" class="option">
-      <option value="public">Public</option>
-      <option value="private">Private</option>
-    </select>
-  </div>
-    <button id="createRepo" class="createRepo btn">Create </button>
-  </div>
-</div>
-</div>
   <div class="projects" id="projects">
     <section class="left-section flex">
       <button id="all">All Projects</button>
@@ -109,10 +86,12 @@
       <button id="JavaScript">Java Script</button>
       <button id="C#">C#</button>
     </section>
-    </div>
-    <div class="Projects" >
+  </div>
+  <div class="Projects">
     <section id="cardselection" class="right-section flex"></section>
   </div>
+</div>
+  
 </main>
 <footer class="flex">
   <ul class="flex">
